@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#e0f2fe"/>
+      <stop offset="1" stop-color="#cffafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g1)" rx="20"/>
+  <g transform="translate(40,40)">
+    <rect width="520" height="200" rx="12" fill="#fff" opacity="0.6"/>
+    <rect x="580" y="0" width="520" height="200" rx="12" fill="#fff" opacity="0.6"/>
+    <text x="40" y="260" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="36" font-weight="700" fill="#0f172a">Project Thumbnail</text>
+  </g>
+</svg>
