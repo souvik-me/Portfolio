@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
+  <!-- Colorful paper plane cursor -->
+  <path d="M3 12l18-9-9 18-3-6-6-3z" fill="#3b82f6" stroke="#06b6d4" stroke-width="1.5"/>
+  <path d="M12 3l8 9-8 9" fill="none" stroke="#ec4899" stroke-width="1" stroke-linecap="round"/>
+  <path d="M12 12l7-8" fill="none" stroke="#10b981" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="12" cy="12" r="2" fill="#fbbf24"/>
+</svg>

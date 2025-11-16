@@ -6,6 +6,8 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home')
   const [imgSrc, setImgSrc] = useState('/profile.png')
   const isFallback = imgSrc === profileImg
+  const [keywordIndex, setKeywordIndex] = useState(0)
+  const keywords = ['Strategy', 'Growth', 'Data', 'Insights']
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +29,14 @@ export default function App() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Cycle through keywords every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setKeywordIndex((prev) => (prev + 1) % keywords.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [keywords.length])
 
   // Focus first mobile menu link when menu opens (accessibility)
   useEffect(() => {
@@ -52,31 +62,33 @@ export default function App() {
       {/* HEADER */}
       <header className="sticky top-0 z-50 backdrop-blur-2xl bg-white/40 border-b border-white/40 shadow-sm">
   <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
+          {/* LEFT: Brand */}
+          <a href="#home" className="capsule capsule--brand" aria-label="Home - I'm Souvik">
+            <div className="brand-main">I'm Souvik</div>
+          </a>
+
+          {/* MIDDLE: Navigation (desktop only) */}
+          <ul className="hidden sm:flex gap-3 items-center">
+            {[
+              { id: 'home', label: 'Home' },
+              { id: 'about', label: 'About' },
+              { id: 'skills', label: 'Skills' },
+              { id: 'projects', label: 'Projects' },
+              { id: 'blog', label: 'Blog' }
+            ].map(item => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className={`nav-pill ${activeSection === item.id ? 'nav-pill--active' : ''}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* RIGHT: CTA + Mobile Menu Button */}
           <div className="flex items-center gap-3">
-            <a href="#home" className="capsule capsule--brand" aria-label="Home - I'm Souvik">
-              <div className="brand-main">I'm Souvik</div>
-            </a>
-
-            {/* Center navigation (desktop) */}
-            <ul className="hidden sm:flex gap-3 items-center">
-              {[
-                { id: 'home', label: 'Home' },
-                { id: 'about', label: 'About' },
-                { id: 'skills', label: 'Skills' },
-                { id: 'projects', label: 'Projects' },
-                { id: 'blog', label: 'Blog' }
-              ].map(item => (
-                <li key={item.id}>
-                  <a
-                    href={`#${item.id}`}
-                    className={`nav-pill ${activeSection === item.id ? 'nav-pill--active' : ''}`}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-
             <a href="#contact" className="capsule capsule--cta hidden sm:inline-flex">Let's Talk</a>
 
             {/* Mobile menu button */}
@@ -136,7 +148,7 @@ export default function App() {
                   <span className="text-sm font-medium">Available for new projects</span>
                 </p>
 
-                <h1 className="hero-big-title text-left">Transforming<br/> <span className="text-blue-600">Strategy</span> <br/>into Action</h1>
+                <h1 className="hero-big-title text-left">Transforming<br/> <span className="keyword-flash">{keywords[keywordIndex]}</span> <br/>into Action</h1>
 
                 <p className="mt-6 text-lg text-slate-600 max-w-xl">Making business logic simple, powerful, and user-first</p>
 
